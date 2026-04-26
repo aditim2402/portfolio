@@ -535,11 +535,11 @@ async function send(){
   document.getElementById('chat-send').disabled=true;
   const typing=appendMsg('thinking…','typing');
   try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{
+    const res=await fetch('/api/chat',{
       method:'POST',
       headers:{
         'Content-Type':'application/json',
-        'x-api-key':'YOUR_ANTHROPIC_API_KEY',
+        'x-api-key':'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',
         'anthropic-version':'2023-06-01',
         'anthropic-dangerous-direct-browser-access':'true'
       },
