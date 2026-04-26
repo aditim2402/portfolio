@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Aditi Maurya Software Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --ink: #0a0a0f;
+  --ink2: #13131c;
+  --ink3: #1e1e2e;
+  --muted: #3a3a52;
+  --subtle: #5a5a7a;
+  --dim: #8888aa;
+  --silver: #b8b8cc;
+  --light: #e8e8f2;
+  --white: #f8f8ff;
+  --acid: #c8ff00;
+  --acid2: #a8e000;
+  --acid3: #88bb00;
+  --ff-display: 'Playfair Display', serif;
+  --ff-ui: 'Syne', sans-serif;
+  --ff-mono: 'JetBrains Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--ink); color: var(--light); font-family: var(--ff-ui); font-weight: 400; overflow-x: hidden; cursor: none; }
+#cursor { width: 10px; height: 10px; background: var(--acid); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); mix-blend-mode: difference; }
+#cursor-ring { width: 36px; height: 36px; border: 1px solid rgba(200,255,0,0.5); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width 0.25s, height 0.25s, border-color 0.25s; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem; background: rgba(10,10,15,0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(200,255,0,0.08); }
+.nav-logo { font-family: var(--ff-mono); font-size: 0.8rem; color: var(--acid); letter-spacing: 0.12em; text-transform: uppercase; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a { font-family: var(--ff-mono); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--dim); text-decoration: none; text-transform: uppercase; transition: color 0.2s; position: relative; }
+.nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; right: 0; height: 1px; background: var(--acid); transform: scaleX(0); transition: transform 0.2s; }
+.nav-links a:hover { color: var(--acid); }
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-cta { font-family: var(--ff-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); background: var(--acid); padding: 0.5rem 1.25rem; text-decoration: none; border-radius: 1px; font-weight: 600; transition: background 0.2s; }
+.nav-cta:hover { background: var(--acid2); }
+
+/* HERO */
+.hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 8rem 3rem 4rem; position: relative; gap: 4rem; overflow: hidden; }
+.hero-orb { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(200,255,0,0.07) 0%, transparent 65%); border-radius: 50%; top: 50%; right: -100px; transform: translateY(-50%); pointer-events: none; animation: orb-pulse 6s ease-in-out infinite; }
+.hero-orb2 { position: absolute; width: 300px; height: 300px; background: radial-gradient(circle, rgba(127,119,221,0.09) 0%, transparent 65%); border-radius: 50%; bottom: 100px; left: 200px; pointer-events: none; animation: orb-pulse 8s 2s ease-in-out infinite; }
+@keyframes orb-pulse { 0%,100% { opacity:0.6; } 50% { opacity:1; } }
+.status-pill { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--ff-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--acid); background: rgba(200,255,0,0.08); border: 1px solid rgba(200,255,0,0.2); border-radius: 100px; padding: 0.35rem 0.9rem; margin-bottom: 1.5rem; }
+.status-dot { width: 6px; height: 6px; background: var(--acid); border-radius: 50%; animation: pulse-dot 2s ease-in-out infinite; }
+@keyframes pulse-dot { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.4; transform:scale(0.7); } }
+.hero-eyebrow { font-family: var(--ff-mono); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--acid); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem; animation: fade-up 0.8s ease both; }
+.hero-eyebrow span { display: block; width: 40px; height: 1px; background: var(--acid); }
+.hero-h1 { font-family: var(--ff-display); font-size: clamp(4rem, 7vw, 6.5rem); font-weight: 700; line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 0.5rem; animation: fade-up 0.8s 0.1s ease both; }
+.hero-h1 .line2 { display: block; font-style: italic; color: var(--acid); font-weight: 400; }
+.hero-role { font-family: var(--ff-mono); font-size: 0.82rem; color: var(--dim); letter-spacing: 0.08em; margin-bottom: 2rem; animation: fade-up 0.8s 0.2s ease both; }
+.hero-desc { font-size: 1.05rem; color: var(--silver); line-height: 1.75; max-width: 480px; margin-bottom: 2.5rem; animation: fade-up 0.8s 0.3s ease both; }
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; animation: fade-up 0.8s 0.4s ease both; }
+.btn-acid { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 2rem; background: var(--acid); color: var(--ink); font-family: var(--ff-mono); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border-radius: 1px; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; }
+.btn-acid:hover { background: var(--acid2); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(200,255,0,0.25); }
+.btn-ghost { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 2rem; background: transparent; color: var(--light); font-family: var(--ff-mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border: 1px solid rgba(255,255,255,0.15); border-radius: 1px; transition: border-color 0.2s, color 0.2s, transform 0.15s; }
+.btn-ghost:hover { border-color: var(--acid); color: var(--acid); transform: translateY(-2px); }
+.hero-right { position: relative; z-index: 2; animation: fade-up 0.8s 0.5s ease both; }
+.stat-card { background: var(--ink2); border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; padding: 1.5rem; margin-bottom: 1rem; position: relative; overflow: hidden; transition: border-color 0.25s, transform 0.2s; }
+.stat-card:hover { border-color: rgba(200,255,0,0.25); transform: translateX(4px); }
+.stat-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--acid); transform: scaleY(0); transition: transform 0.25s; transform-origin: bottom; }
+.stat-card:hover::before { transform: scaleY(1); }
+.stat-num { font-family: var(--ff-display); font-size: 2.5rem; font-weight: 700; color: var(--acid); line-height: 1; margin-bottom: 0.25rem; }
+.stat-label { font-family: var(--ff-mono); font-size: 0.7rem; color: var(--dim); letter-spacing: 0.1em; text-transform: uppercase; }
+.stat-desc { font-size: 0.85rem; color: var(--silver); margin-top: 0.5rem; }
+
+/* MARQUEE */
+.marquee-wrap { border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); overflow: hidden; padding: 1rem 0; background: var(--ink2); }
+.marquee-inner { display: flex; gap: 3rem; animation: marquee 25s linear infinite; white-space: nowrap; }
+.marquee-inner span { font-family: var(--ff-mono); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); flex-shrink: 0; }
+.marquee-inner .dot { color: var(--acid); font-size: 1rem; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* SECTIONS */
+.section { padding: 7rem 3rem; max-width: 1200px; margin: 0 auto; }
+.s-label { font-family: var(--ff-mono); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--acid); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+.s-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--acid); }
+.s-title { font-family: var(--ff-display); font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 700; line-height: 1.05; margin-bottom: 3.5rem; letter-spacing: -0.01em; }
+.s-title em { font-style: italic; color: var(--acid); font-weight: 400; }
+hr.sec-divider { border: none; border-top: 1px solid rgba(255,255,255,0.05); max-width: 1200px; margin: 0 auto; }
+
+/* ABOUT */
+.about-layout { display: grid; grid-template-columns: 3fr 2fr; gap: 4rem; align-items: start; }
+.about-text p { font-size: 1.05rem; color: var(--silver); line-height: 1.85; margin-bottom: 1.5rem; }
+.about-text p strong { color: var(--light); font-weight: 600; }
+.about-text .hi { color: var(--acid); font-weight: 500; }
+.edu-block { background: var(--ink2); border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; padding: 1.75rem; }
+.edu-block-title { font-family: var(--ff-mono); font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--acid); margin-bottom: 1.5rem; }
+.edu-entry { padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.edu-entry:last-child { border-bottom: none; padding-bottom: 0; }
+.edu-deg { font-family: var(--ff-display); font-size: 1rem; color: var(--light); margin-bottom: 0.2rem; }
+.edu-sch { font-size: 0.85rem; color: var(--acid); font-weight: 500; }
+.edu-yr { font-family: var(--ff-mono); font-size: 0.68rem; color: var(--dim); margin-top: 0.25rem; }
+
+/* EXPERIENCE */
+.exp-item { display: grid; grid-template-columns: 220px 1fr; gap: 3rem; padding: 3rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); position: relative; }
+.exp-item:first-of-type { border-top: 1px solid rgba(255,255,255,0.05); }
+.exp-item:hover .exp-glow { opacity: 1; }
+.exp-glow { position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, transparent, var(--acid), transparent); opacity: 0; transition: opacity 0.3s; }
+.exp-when { font-family: var(--ff-mono); font-size: 0.7rem; color: var(--acid); letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+.exp-where { font-size: 0.8rem; color: var(--dim); }
+.exp-role { font-family: var(--ff-display); font-size: 1.5rem; color: var(--light); margin-bottom: 0.2rem; line-height: 1.2; }
+.exp-co { font-size: 0.9rem; color: var(--acid); font-weight: 600; letter-spacing: 0.02em; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
+.badge-current { font-family: var(--ff-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--acid); color: var(--ink); padding: 0.2rem 0.6rem; font-weight: 700; border-radius: 1px; }
+.exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+.exp-bullets li { font-size: 0.92rem; color: var(--silver); line-height: 1.7; padding-left: 1.2rem; position: relative; }
+.exp-bullets li::before { content: '→'; position: absolute; left: 0; color: var(--acid); font-size: 0.75rem; top: 0.2em; }
+.chip-row { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1.25rem; }
+.chip { font-family: var(--ff-mono); font-size: 0.65rem; letter-spacing: 0.07em; padding: 0.28rem 0.7rem; border-radius: 1px; border: 1px solid rgba(200,255,0,0.2); background: rgba(200,255,0,0.05); color: rgba(200,255,0,0.8); }
+.chip.purple { border-color: rgba(127,119,221,0.25); background: rgba(127,119,221,0.07); color: #AFA9EC; }
+
+/* PROJECTS */
+.proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.proj-card { background: var(--ink2); border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; padding: 1.75rem; display: flex; flex-direction: column; gap: 0.75rem; position: relative; overflow: hidden; transition: border-color 0.25s, transform 0.2s, box-shadow 0.25s; text-decoration: none; color: inherit; }
+.proj-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(200,255,0,0.04) 0%, transparent 60%); opacity: 0; transition: opacity 0.3s; }
+.proj-card:hover { border-color: rgba(200,255,0,0.3); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 30px rgba(200,255,0,0.05); }
+.proj-card:hover::after { opacity: 1; }
+.proj-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.proj-num { font-family: var(--ff-mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.12em; }
+.proj-arrow { font-size: 0.9rem; color: var(--dim); transition: color 0.2s, transform 0.2s; }
+.proj-card:hover .proj-arrow { color: var(--acid); transform: translate(2px, -2px); }
+.proj-title { font-family: var(--ff-display); font-size: 1.15rem; color: var(--light); line-height: 1.3; flex: 1; }
+.proj-desc { font-size: 0.84rem; color: var(--dim); line-height: 1.65; flex: 1; }
+.proj-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: auto; }
+.proj-chip { font-family: var(--ff-mono); font-size: 0.6rem; padding: 0.2rem 0.5rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 1px; color: var(--dim); }
+
+/* SKILLS */
+.skills-layout { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.skill-block { background: var(--ink2); border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; padding: 1.5rem; transition: border-color 0.2s; }
+.skill-block:hover { border-color: rgba(200,255,0,0.2); }
+.skill-block-label { font-family: var(--ff-mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--acid); margin-bottom: 1rem; }
+.skill-pills { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.skill-pill { font-size: 0.8rem; color: var(--silver); padding: 0.3rem 0.65rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 1px; transition: background 0.15s, color 0.15s, border-color 0.15s; }
+.skill-pill:hover { background: rgba(200,255,0,0.08); color: var(--acid); border-color: rgba(200,255,0,0.2); }
+
+/* CONTACT */
+.contact-wrap { text-align: center; padding: 5rem 0; position: relative; border-top: 1px solid rgba(255,255,255,0.05); }
+.contact-glow { position: absolute; width: 500px; height: 300px; background: radial-gradient(ellipse, rgba(200,255,0,0.06), transparent 70%); left: 50%; top: 50%; transform: translate(-50%,-50%); pointer-events: none; }
+.contact-super { font-family: var(--ff-display); font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 700; line-height: 1.0; margin-bottom: 1.5rem; }
+.contact-super em { font-style: italic; color: var(--acid); font-weight: 400; }
+.contact-sub { font-size: 1rem; color: var(--dim); max-width: 460px; margin: 0 auto 2.5rem; line-height: 1.75; }
+.contact-row { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 3rem; }
+.contact-lnk { font-family: var(--ff-mono); font-size: 0.75rem; letter-spacing: 0.1em; color: var(--dim); text-decoration: none; text-transform: uppercase; transition: color 0.2s; display: flex; align-items: center; gap: 0.4rem; }
+.contact-lnk:hover { color: var(--acid); }
+footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; }
+footer p { font-family: var(--ff-mono); font-size: 0.68rem; color: var(--muted); letter-spacing: 0.06em; }
+
+/* CHATBOT */
+#chat-btn { position: fixed; bottom: 2rem; right: 2rem; z-index: 800; width: 56px; height: 56px; background: var(--acid); border: none; border-radius: 50%; cursor: none; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(200,255,0,0.3); transition: transform 0.2s, box-shadow 0.2s; }
+#chat-btn:hover { transform: scale(1.1); box-shadow: 0 8px 30px rgba(200,255,0,0.4); }
+#chat-btn svg { width: 24px; height: 24px; fill: var(--ink); }
+#chat-panel { position: fixed; bottom: 5.5rem; right: 2rem; z-index: 800; width: 380px; height: 520px; background: var(--ink2); border: 1px solid rgba(200,255,0,0.2); border-radius: 8px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,0.6); transform: scale(0.95) translateY(10px); opacity: 0; pointer-events: none; transition: transform 0.25s ease, opacity 0.25s ease; }
+#chat-panel.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
+.chat-head { padding: 1rem 1.25rem; background: var(--ink3); border-bottom: 1px solid rgba(200,255,0,0.1); display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+.chat-avatar { width: 36px; height: 36px; background: var(--acid); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--ff-display); font-size: 0.9rem; color: var(--ink); font-weight: 700; flex-shrink: 0; }
+.chat-head-info h4 { font-size: 0.88rem; font-weight: 600; color: var(--light); }
+.chat-head-info p { font-family: var(--ff-mono); font-size: 0.65rem; color: var(--acid); }
+.chat-close { margin-left: auto; background: none; border: none; cursor: none; color: var(--dim); font-size: 1.2rem; line-height: 1; transition: color 0.2s; }
+.chat-close:hover { color: var(--light); }
+#chat-msgs { flex: 1; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 0.75rem; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.1) transparent; }
+.msg { max-width: 85%; padding: 0.65rem 0.9rem; border-radius: 6px; font-size: 0.84rem; line-height: 1.6; }
+.msg.bot { background: var(--ink3); color: var(--silver); align-self: flex-start; border: 1px solid rgba(255,255,255,0.06); border-bottom-left-radius: 2px; }
+.msg.user { background: var(--acid); color: var(--ink); align-self: flex-end; font-weight: 500; border-bottom-right-radius: 2px; }
+.msg.typing { background: var(--ink3); color: var(--acid); align-self: flex-start; font-family: var(--ff-mono); font-size: 0.7rem; letter-spacing: 0.1em; border: 1px solid rgba(200,255,0,0.1); }
+.chat-suggestions { display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 0.5rem 1rem; }
+.chat-sug { font-family: var(--ff-mono); font-size: 0.65rem; letter-spacing: 0.06em; color: var(--acid); border: 1px solid rgba(200,255,0,0.2); background: transparent; padding: 0.3rem 0.65rem; border-radius: 100px; cursor: none; transition: background 0.15s; white-space: nowrap; }
+.chat-sug:hover { background: rgba(200,255,0,0.12); color: var(--white); }
+.chat-input-row { padding: 0.75rem; border-top: 1px solid rgba(200,255,0,0.08); display: flex; gap: 0.5rem; flex-shrink: 0; }
+#chat-input { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 0.55rem 0.8rem; font-family: var(--ff-ui); font-size: 0.84rem; color: var(--light); outline: none; transition: border-color 0.2s; }
+#chat-input::placeholder { color: rgba(136,136,170,0.5); }
+#chat-input:focus { border-color: rgba(200,255,0,0.3); }
+#chat-send { width: 36px; height: 36px; background: var(--acid); border: none; border-radius: 4px; cursor: none; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.2s; }
+#chat-send:hover { background: var(--acid2); }
+#chat-send:disabled { opacity: 0.35; }
+#chat-send svg { width: 15px; height: 15px; fill: var(--ink); }
+
+@keyframes fade-up { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; }
+  .hero-right { display: none; }
+  .section { padding: 5rem 1.5rem; }
+  .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+  .proj-grid { grid-template-columns: 1fr; }
+  .skills-layout { grid-template-columns: 1fr 1fr; }
+  .about-layout { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 0.5rem; padding: 1.25rem 1.5rem; }
+  #chat-panel { width: calc(100vw - 2rem); right: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<nav>
+  <div class="nav-logo">AM / 2026</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:maurya.ad@northeastern.edu" class="nav-cta">Hire Me</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-orb"></div>
+  <div class="hero-orb2"></div>
+  <div style="position:relative;z-index:2;">
+    <div style="margin-bottom:2rem;">
+      <div style="width:130px;height:130px;border-radius:50%;overflow:hidden;border:2px solid rgba(200,255,0,0.4);box-shadow:0 0 40px rgba(200,255,0,0.12);">
+        <img src="aditi photo.png" alt="Aditi Maurya" style="width:100%;height:100%;object-fit:cover;object-position:center center;"/>
+      </div>
+    </div>
+    <div class="hero-eyebrow"><span></span>Data &amp; AI Engineer</div>
+    <h1 class="hero-h1">Aditi<span class="line2">Maurya.</span></h1>
+    <p class="hero-role">// AI · Data Systems · Full Stack</p>
+    <p class="hero-desc">I build AI powered systems that solve real problems currently building a multi agent clinical note compliance engine at Daivergent, New York.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-acid">View My Work ↓</a>
+      <a href="https://github.com/aditim2402" target="_blank" class="btn-ghost">GitHub ↗</a>
+      <a href="https://www.linkedin.com/in/aditi-maurya-54a417213" target="_blank" class="btn-ghost">LinkedIn ↗</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stat-card"><div style="width:28px;height:28px;margin-bottom:0.5rem;opacity:0.7;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--acid)" stroke-width="1.5"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></div><div class="stat-num">6+</div><div class="stat-label">Projects Shipped</div><div class="stat-desc">From generative AI to data pipelines and health tech.</div></div>
+    <div class="stat-card"><div style="width:28px;height:28px;margin-bottom:0.5rem;opacity:0.7;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--acid)" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="12.01"/><path d="M2 12h20"/></svg></div><div class="stat-num">2</div><div class="stat-label">Years Experience</div><div class="stat-desc">Internships, research, and real production systems.</div></div>
+    <div class="stat-card"><div style="width:28px;height:28px;margin-bottom:0.5rem;opacity:0.7;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--acid)" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="stat-num">∞</div><div class="stat-label">Curiosity</div><div class="stat-desc">LangGraph, CQRS, diffusion models always learning.</div></div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <span>Python</span><span class="dot">·</span><span>LangGraph</span><span class="dot">·</span><span>PostgreSQL</span><span class="dot">·</span><span>PyTorch</span><span class="dot">·</span><span>FastAPI</span><span class="dot">·</span><span>AWS</span><span class="dot">·</span><span>CQRS</span><span class="dot">·</span><span>NLP</span><span class="dot">·</span><span>RAG</span><span class="dot">·</span><span>Airflow</span><span class="dot">·</span><span>Docker</span><span class="dot">·</span><span>HuggingFace</span><span class="dot">·</span><span>Snowflake</span><span class="dot">·</span>
+    <span>Python</span><span class="dot">·</span><span>LangGraph</span><span class="dot">·</span><span>PostgreSQL</span><span class="dot">·</span><span>PyTorch</span><span class="dot">·</span><span>FastAPI</span><span class="dot">·</span><span>AWS</span><span class="dot">·</span><span>CQRS</span><span class="dot">·</span><span>NLP</span><span class="dot">·</span><span>RAG</span><span class="dot">·</span><span>Airflow</span><span class="dot">·</span><span>Docker</span><span class="dot">·</span><span>HuggingFace</span><span class="dot">·</span><span>Snowflake</span><span class="dot">·</span>
+  </div>
+</div>
+
+<hr class="sec-divider"/>
+
+<div class="section reveal" id="about">
+  <div class="s-label">Who I Am</div>
+  <h2 class="s-title">Curious engineer,<br/><em>systems thinker</em></h2>
+  <div class="about-layout">
+    <div class="about-text">
+      <p>I'm a data and AI engineer who enjoys building systems where the output actually matters where bad code means a rejected invoice or a missed service hour, not just a failing test.</p>
+      <p>Currently at <span class="hi">Daivergent, New York</span> a workforce development platform delivering state funded vocational rehabilitation and Pre ETS services to neurodiverse individuals across New York, California, and Michigan. The engineering team is building AI enabled workflows, automating billing pipelines, expanding scheduling infrastructure, and migrating to a new product architecture all in support of a Series A raise. I'm focused on Smart Audit, an AI multi agent system using LangGraph that reviews clinical notes for billing compliance and language quality before they reach the billing cycle.</p>
+      <p>Before that I spent time in <strong>NLP, bioinformatics, and data engineering</strong> through coursework and projects at Northeastern. I'm looking for full time roles where I can keep building things that ship.</p>
+    </div>
+    <div class="edu-block">
+      <div class="edu-block-title">Education</div>
+      <div class="edu-entry">
+        <div class="edu-deg">MS Information Systems</div>
+        <div class="edu-sch">Northeastern University</div>
+        <div class="edu-yr">2023 2025 · Boston, MA</div>
+      </div>
+      <div class="edu-entry">
+        <div class="edu-deg">B.Tech Computer Science</div>
+        <div class="edu-sch">University of Mumbai</div>
+        <div class="edu-yr">2019 2023</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sec-divider"/>
+
+<div class="section reveal" id="experience">
+  <div class="s-label">Work History</div>
+  <h2 class="s-title">Where I've<br/><em>made impact</em></h2>
+
+  <div class="exp-item">
+    <div class="exp-glow"></div>
+    <div><div class="exp-when">Jan 2026 Jun 2026</div><div class="exp-where"><svg style="width:11px;height:11px;margin-right:3px;vertical-align:middle;opacity:0.6;" viewBox="0 0 24 24" fill="none" stroke="var(--acid)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>New York, NY</div></div>
+    <div>
+      <div class="exp-role">Software Developer Intern</div>
+      <div class="exp-co"><a href="https://www.daivergent.com/" target="_blank" style="color:var(--acid);text-decoration:underline;text-underline-offset:3px;">Diavergent ↗</a> <span class="badge-current">Current</span></div>
+      <p style="font-size:0.82rem;color:var(--dim);line-height:1.6;margin-bottom:1rem;font-style:italic;">Daivergent is a workforce development platform connecting neurodiverse individuals with certified behavioral health coaches, delivering state funded vocational rehabilitation and Pre ETS services across New York, California, and Michigan.</p>
+      <ul class="exp-bullets">
+        <li>Leading development of Smart Audit, an AI multi agent system embedded within the clinical note entry workflow building 6 LLM powered agents (LangGraph) targeting 1006X/1008X session, monthly, and closure reports to enforce billing compliance and improve language quality, directly reducing invoice rejections and monthly QA overhead.</li>
+        <li>Scaffolded and owns the note validator service end to end structuring the codebase, managing feature branches across multi agent, security, and cost optimization workstreams, and preparing the service for production rollout on a distributed backend.</li>
+        <li>Working within a CQRS event driven platform serving neurodiverse clients across NY, CA, and MI contributing to an AI enabled product roadmap targeting billing automation, utilization improvements, and coach client service quality ahead of a Series A raise.</li>
+      </ul>
+      <div class="chip-row">
+        <span class="chip">Python</span><span class="chip">LangGraph</span><span class="chip">Flask</span><span class="chip">PostgreSQL</span><span class="chip">CQRS</span><span class="chip purple">Multi-Agent AI</span><span class="chip purple">LLM APIs</span><span class="chip purple">Clinical NLP</span><span class="chip purple">API Security</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-glow"></div>
+    <div><div class="exp-when">Aug 2025 Jan 2026</div><div class="exp-where"><svg style="width:11px;height:11px;margin-right:3px;vertical-align:middle;opacity:0.6;" viewBox="0 0 24 24" fill="none" stroke="var(--acid)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Boston, MA</div></div>
+    <div>
+      <div class="exp-role">ITS Instructional Assistant</div>
+      <div class="exp-co">Northeastern University</div>
+      <ul class="exp-bullets">
+        <li>Provided real time technical support for classroom technology, troubleshooting AV systems, software, and hybrid learning tools to ensure uninterrupted instruction.</li>
+        <li>Documented recurring issues and collaborated with ITS teams to maintain system reliability and consistent service standards.</li>
+        <li>Demonstrated professionalism and discretion while supporting faculty and students in live academic environments.</li>
+      </ul>
+      <div class="chip-row">
+        <span class="chip">Technical Support</span><span class="chip">AV Systems</span><span class="chip purple">Hybrid Learning</span><span class="chip purple">Documentation</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-glow"></div>
+    <div><div class="exp-when">Jun 2022 Dec 2023</div><div class="exp-where"><svg style="width:11px;height:11px;margin-right:3px;vertical-align:middle;opacity:0.6;" viewBox="0 0 24 24" fill="none" stroke="var(--acid)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Indore, India</div></div>
+    <div>
+      <div class="exp-role">Data Analyst</div>
+      <div class="exp-co">Renovations (Startup)</div>
+      <p style="font-size:0.82rem;color:var(--dim);line-height:1.6;margin-bottom:1rem;font-style:italic;">Renovations is a data driven startup focused on retail operations and analytics, processing multi source sales and inventory data to drive operational decision-making.</p>
+      <ul class="exp-bullets">
+        <li>Processed and validated 12+ months of multi source sales data in Excel, ensuring accuracy, consistency, and compliance across retail operations.</li>
+        <li>Developed Power BI dashboards and automated PostgreSQL ETL workflows to integrate inventory and transaction data, reducing reporting turnaround time by 30%.</li>
+        <li>Analyzed business workflows and managed IT/product inventory data, identifying process gaps and implementing data driven improvements to standardize reporting.</li>
+      </ul>
+      <div class="chip-row">
+        <span class="chip">PostgreSQL</span><span class="chip">Power BI</span><span class="chip">Excel</span><span class="chip purple">ETL Pipelines</span><span class="chip purple">Data Analytics</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="sec-divider"/>
+
+<div class="section reveal" id="projects">
+  <div class="s-label">Selected Work</div>
+  <h2 class="s-title">Things I've<br/><em>built &amp; shipped</em></h2>
+  <div class="proj-grid">
+    <a href="https://github.com/aditim2402/menstrual-health-chatbot---Petal" target="_blank" class="proj-card">
+      <div class="proj-top"><span class="proj-num">01</span><span class="proj-arrow">↗</span></div>
+      <div style="width:32px;height:32px;margin-bottom:0.5rem;opacity:0.6;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--acid)" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h3 class="proj-title">Petal Menstrual Health Chatbot</h3>
+      <p class="proj-desc">NLP powered chatbot delivering personalized menstrual health insights with clinical accuracy and empathy at its core.</p>
+      <div class="proj-chips"><span class="proj-chip">Python</span><span class="proj-chip">NLP</span><span class="proj-chip">LLM</span></div>
+    </a>
+    <a href="https://github.com/NitishChowdaryK/genie-protein-design" target="_blank" class="proj-card">
+      <div class="proj-top"><span class="proj-num">02</span><span class="proj-arrow">↗</span></div>
+      <div style="width:32px;height:32px;margin-bottom:0.5rem;opacity:0.6;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--acid)" stroke-width="1.5"><path d="M4 4c0 0 4 2 8 2s8-2 8-2"/><path d="M4 20c0 0 4-2 8-2s8 2 8 2"/><path d="M4 4v16"/><path d="M20 4v16"/><path d="M4 9h16"/><path d="M4 15h16"/></svg></div><h3 class="proj-title">Genie GenAI Protein Design</h3>
+      <p class="proj-desc">Generative AI system for de novo protein structure design using diffusion models accelerating drug discovery research.</p>
+      <div class="proj-chips"><span class="proj-chip">PyTorch</span><span class="proj-chip">Diffusion</span><span class="proj-chip">Bioinformatics</span></div>
+    </a>
+    <a href="https://github.com/aditim2402/Hemophilia-B-Diagnosis-and-Treatment" target="_blank" class="proj-card">
+      <div class="proj-top"><span class="proj-num">03</span><span class="proj-arrow">↗</span></div>
+      <div style="width:32px;height:32px;margin-bottom:0.5rem;opacity:0.6;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--acid)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 8v8M8 12h8"/></svg></div><h3 class="proj-title">Hemophilia B Diagnosis AI</h3>
+      <p class="proj-desc">AI assisted diagnostic and treatment recommendation system using structured clinical data and ML classifiers for rare disease.</p>
+      <div class="proj-chips"><span class="proj-chip">Python</span><span class="proj-chip">Scikit learn</span><span class="proj-chip">Healthcare AI</span></div>
+    </a>
+    <a href="https://github.com/aditim2402/Information-Retrieval" target="_blank" class="proj-card">
+      <div class="proj-top"><span class="proj-num">04</span><span class="proj-arrow">↗</span></div>
+      <div style="width:32px;height:32px;margin-bottom:0.5rem;opacity:0.6;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--acid)" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div><h3 class="proj-title">Information Retrieval System</h3>
+      <p class="proj-desc">Full IR system with TF-IDF, BM25, and neural retrieval for semantic search and document ranking over large corpora.</p>
+      <div class="proj-chips"><span class="proj-chip">Python</span><span class="proj-chip">TF-IDF</span><span class="proj-chip">BM25</span><span class="proj-chip">NLP</span></div>
+    </a>
+    <a href="https://github.com/bagwe-shubham1727/Wednesday_Group_80_AEDFinalProject" target="_blank" class="proj-card">
+      <div class="proj-top"><span class="proj-num">05</span><span class="proj-arrow">↗</span></div>
+      <div style="width:32px;height:32px;margin-bottom:0.5rem;opacity:0.6;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--acid)" stroke-width="1.5"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg></div><h3 class="proj-title">University Management System</h3>
+      <p class="proj-desc">Multi-enterprise Java system managing University, Police, Bank, and Cafes with role based access across students, staff, and suppliers.</p>
+      <div style="margin:0.5rem 0;padding:0.6rem;background:rgba(255,255,255,0.03);border-radius:3px;border:1px solid rgba(255,255,255,0.06);">
+        <div style="font-family:var(--ff-mono);font-size:0.55rem;color:var(--acid);letter-spacing:0.1em;margin-bottom:0.4rem;">SYSTEM ARCHITECTURE</div>
+        <div style="display:flex;gap:0.3rem;flex-wrap:wrap;">
+          <div style="font-size:0.6rem;color:var(--dim);background:rgba(200,255,0,0.05);border:1px solid rgba(200,255,0,0.15);padding:0.15rem 0.35rem;border-radius:2px;">University</div>
+          <div style="font-size:0.6rem;color:var(--dim);background:rgba(200,255,0,0.05);border:1px solid rgba(200,255,0,0.15);padding:0.15rem 0.35rem;border-radius:2px;">Police</div>
+          <div style="font-size:0.6rem;color:var(--dim);background:rgba(200,255,0,0.05);border:1px solid rgba(200,255,0,0.15);padding:0.15rem 0.35rem;border-radius:2px;">Bank</div>
+          <div style="font-size:0.6rem;color:var(--dim);background:rgba(200,255,0,0.05);border:1px solid rgba(200,255,0,0.15);padding:0.15rem 0.35rem;border-radius:2px;">Cafes</div>
+        </div>
+        <div style="font-size:0.58rem;color:var(--muted);margin-top:0.3rem;">Roles: Students · Professors · Staff · CBI · Employees · Suppliers</div>
+      </div>
+      <div class="proj-chips"><span class="proj-chip">Java</span><span class="proj-chip">OOP</span><span class="proj-chip">RBAC</span><span class="proj-chip">System Design</span></div>
+    </a>
+    <a href="https://github.com/aditim2402/Final-Project--DAMG7370" target="_blank" class="proj-card">
+      <div class="proj-top"><span class="proj-num">06</span><span class="proj-arrow">↗</span></div>
+      <div style="width:32px;height:32px;margin-bottom:0.5rem;opacity:0.6;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--acid)" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M7 2v20M17 2v20M2 12h20M2 7h5M17 7h5M2 17h5M17 17h5"/></svg></div><h3 class="proj-title">IMDb Data Analytics Platform</h3>
+      <p class="proj-desc">End-to-end BI solution processing 200M+ records across 7 IMDb datasets using medallion architecture Bronze → Silver → Gold with 60 data quality checks and Power BI dashboards.</p>
+      <div style="margin:0.5rem 0;padding:0.6rem;background:rgba(255,255,255,0.03);border-radius:3px;border:1px solid rgba(255,255,255,0.06);">
+        <div style="font-family:var(--ff-mono);font-size:0.55rem;color:var(--acid);letter-spacing:0.1em;margin-bottom:0.35rem;">MEDALLION PIPELINE</div>
+        <div style="display:flex;align-items:center;gap:0.3rem;font-size:0.6rem;">
+          <span style="color:var(--dim);background:rgba(200,255,0,0.05);border:1px solid rgba(200,255,0,0.15);padding:0.15rem 0.4rem;border-radius:2px;">Bronze</span>
+          <span style="color:var(--muted);">→</span>
+          <span style="color:var(--dim);background:rgba(200,255,0,0.05);border:1px solid rgba(200,255,0,0.15);padding:0.15rem 0.4rem;border-radius:2px;">Silver</span>
+          <span style="color:var(--muted);">→</span>
+          <span style="color:var(--dim);background:rgba(200,255,0,0.05);border:1px solid rgba(200,255,0,0.15);padding:0.15rem 0.4rem;border-radius:2px;">Gold</span>
+          <span style="color:var(--muted);font-size:0.55rem;margin-left:0.3rem;">99.9997% quality</span>
+        </div>
+      </div>
+      <div class="proj-chips"><span class="proj-chip">Databricks</span><span class="proj-chip">Power BI</span><span class="proj-chip">Delta Lake</span><span class="proj-chip">Alteryx</span><span class="proj-chip">SQL</span></div>
+    </a>
+  </div>
+</div>
+
+<hr class="sec-divider"/>
+
+<div class="section reveal" id="skills">
+  <div class="s-label">Toolkit</div>
+  <h2 class="s-title">Technologies &<br/><em>competencies</em></h2>
+  <div class="skills-layout">
+    <div class="skill-block"><div class="skill-block-label">Languages</div><div class="skill-pills"><span class="skill-pill">Python</span><span class="skill-pill">SQL</span><span class="skill-pill">JavaScript</span><span class="skill-pill">TypeScript</span><span class="skill-pill">Java</span><span class="skill-pill">Bash</span></div></div>
+    <div class="skill-block"><div class="skill-block-label">AI / ML</div><div class="skill-pills"><span class="skill-pill">LangGraph</span><span class="skill-pill">LangChain</span><span class="skill-pill">PyTorch</span><span class="skill-pill">Scikit learn</span><span class="skill-pill">HuggingFace</span><span class="skill-pill">OpenAI API</span></div></div>
+    <div class="skill-block"><div class="skill-block-label">Data Engineering</div><div class="skill-pills"><span class="skill-pill">PostgreSQL</span><span class="skill-pill">Airflow</span><span class="skill-pill">dbt</span><span class="skill-pill">Snowflake</span><span class="skill-pill">Spark</span><span class="skill-pill">ETL</span></div></div>
+    <div class="skill-block"><div class="skill-block-label">Cloud &amp; Infra</div><div class="skill-pills"><span class="skill-pill">AWS</span><span class="skill-pill">GCP</span><span class="skill-pill">Docker</span><span class="skill-pill">Kubernetes</span><span class="skill-pill">CI/CD</span></div></div>
+    <div class="skill-block"><div class="skill-block-label">Backend</div><div class="skill-pills"><span class="skill-pill">FastAPI</span><span class="skill-pill">Flask</span><span class="skill-pill">Node.js</span><span class="skill-pill">REST APIs</span><span class="skill-pill">CQRS</span><span class="skill-pill">Event-Driven</span></div></div>
+    <div class="skill-block"><div class="skill-block-label">Concepts</div><div class="skill-pills"><span class="skill-pill">NLP</span><span class="skill-pill">RAG</span><span class="skill-pill">Bioinformatics</span><span class="skill-pill">System Design</span><span class="skill-pill">Agile</span></div></div>
+  </div>
+</div>
+
+<hr class="sec-divider"/>
+
+<div class="section reveal" id="contact">
+  <div class="contact-wrap">
+    <div class="contact-glow"></div>
+    <div class="s-label" style="justify-content:center;">Let's connect</div>
+    <h2 class="contact-super">Open to<br/><em>opportunities</em></h2>
+    <p class="contact-sub">Looking for full time roles in AI engineering, data systems, or backend development. I move fast and learn faster.</p>
+    <div class="contact-row">
+      <a href="mailto:maurya.ad@northeastern.edu" class="contact-lnk">✉ Email</a>
+      <a href="https://www.linkedin.com/in/aditi-maurya-54a417213" target="_blank" class="contact-lnk">↗ LinkedIn</a>
+      <a href="https://github.com/aditim2402" target="_blank" class="contact-lnk">↗ GitHub</a>
+      <a href="https://aditi-maurya.netlify.app" target="_blank" class="contact-lnk">↗ Live Site</a>
+    </div>
+    <a href="mailto:maurya.ad@northeastern.edu" class="btn-acid">Say Hello →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Aditi Maurya</p>
+  <p>Boston → New York · Built with obsession</p>
+</footer>
+
+<!-- CHATBOT -->
+<button id="chat-btn" onclick="toggleChat()" title="Chat with Aditi's AI">
+  <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+</button>
+
+<div id="chat-panel">
+  <div class="chat-head">
+    <div class="chat-avatar">A</div>
+    <div class="chat-head-info">
+      <h4>Ask about Aditi</h4>
+      <p>AI Assistant · Online</p>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div id="chat-msgs"></div>
+  <div class="chat-suggestions" id="suggestions">
+    <button class="chat-sug" onclick="useSug(this)">What's your experience?</button>
+    <button class="chat-sug" onclick="useSug(this)">Tell me about your projects</button>
+    <button class="chat-sug" onclick="useSug(this)">What tech do you use?</button>
+    <button class="chat-sug" onclick="useSug(this)">Are you open to work?</button>
+  </div>
+  <div class="chat-input-row">
+    <input id="chat-input" type="text" placeholder="Ask me anything about Aditi…" onkeydown="if(event.key==='Enter')send()"/>
+    <button id="chat-send" onclick="send()">
+      <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+// CURSOR
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);})();
+document.querySelectorAll('a,button,.proj-card,.stat-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.width='52px';ring.style.height='52px';ring.style.borderColor='rgba(200,255,0,0.8)';});
+  el.addEventListener('mouseleave',()=>{ring.style.width='36px';ring.style.height='36px';ring.style.borderColor='rgba(200,255,0,0.5)';});
+});
+
+// SCROLL REVEAL
+new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1})
+  .observe.call(new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:0.1}),document.querySelectorAll('.reveal')[0]);
+document.querySelectorAll('.reveal').forEach(el=>new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1}).observe(el));
+
+// CHATBOT
+const CONTEXT=`You are a personal AI assistant on Aditi Maurya's portfolio website. Answer questions about Aditi warmly, confidently, and professionally.
+
+About Aditi:
+- Software Developer focused on AI/ML, backend engineering, data systems
+- Current role: Software Developer Intern at Diavergent, New York (Jan 2026 – Jun 2026)
+  · Workforce development platform connecting neurodiverse clients with certified coaches
+  · AI powered SQL chatbot using LangGraph Ops teams query live PostgreSQL via natural language
+  · CQRS event driven architecture (Dendron), IANA timezone-aware scheduling logic
+- Education: MS Information Systems, Northeastern University (2023–2025); B.Tech CS (2019–2023)
+- Skills: Python, SQL, JS, TypeScript, LangGraph, LangChain, PyTorch, Scikit learn, HuggingFace, PostgreSQL, Airflow, dbt, Snowflake, AWS, GCP, Docker, FastAPI, Flask, Node.js, NLP, RAG, CQRS
+- Projects: Petal (menstrual health chatbot), Genie (protein design + diffusion models), Hemophilia B diagnosis AI, Information Retrieval system, Cloud Data Pipeline, Advanced DB project
+- GitHub: github.com/aditim2402 | LinkedIn: linkedin.com/in/aditi-maurya-54a417213
+- Open to full time roles in AI engineering, data systems, backend development
+
+Be concise (2-3 sentences), warm, and enthusiastic. If unsure, suggest reaching out at maurya.ad@northeastern.edu.`;
+
+let isOpen=false,loading=false;
+const history=[];
+
+function toggleChat(){
+  isOpen=!isOpen;
+  document.getElementById('chat-panel').classList.toggle('open',isOpen);
+  if(isOpen&&history.length===0)appendMsg("Hi! I'm Aditi's AI assistant. Ask me anything about her experience, projects, or skills! 👋",'bot');
+  if(isOpen)setTimeout(()=>document.getElementById('chat-input').focus(),250);
+}
+function appendMsg(text,role){
+  const el=document.createElement('div');
+  el.className='msg '+role;
+  el.textContent=text;
+  const msgs=document.getElementById('chat-msgs');
+  msgs.appendChild(el);
+  msgs.scrollTop=msgs.scrollHeight;
+  return el;
+}
+function useSug(btn){
+  document.getElementById('chat-input').value=btn.textContent;
+  document.getElementById('suggestions').style.display='none';
+  send();
+}
+async function send(){
+  if(loading)return;
+  const input=document.getElementById('chat-input');
+  const text=input.value.trim();
+  if(!text)return;
+  input.value='';
+  document.getElementById('suggestions').style.display='none';
+  appendMsg(text,'user');
+  history.push({role:'user',content:text});
+  loading=true;
+  document.getElementById('chat-send').disabled=true;
+  const typing=appendMsg('thinking…','typing');
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'x-api-key':'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',
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-access':'true'
+      },
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:500,system:CONTEXT,messages:history})
+    });
+    const data=await res.json();
+    const reply=data.content?.[0]?.text||"Couldn't get a response reach Aditi at maurya.ad@northeastern.edu!";
+    typing.remove();
+    appendMsg(reply,'bot');
+    history.push({role:'assistant',content:reply});
+  }catch(e){
+    typing.remove();
+    appendMsg("Something went wrong. Reach Aditi at maurya.ad@northeastern.edu!",'bot');
+  }
+  loading=false;
+  document.getElementById('chat-send').disabled=false;
+  input.focus();
+}
+</script>
+</body>
+</html>
